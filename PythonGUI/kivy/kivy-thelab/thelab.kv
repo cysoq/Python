@@ -1,0 +1,74 @@
+#:import layout_examples layout_examples
+#:import widget_examples widget_examples
+#:import navigation_screen_manager navigation_screen_manager
+#:import boxlayout_with_action_bar boxlayout_with_action_bar
+MyScreenManager: #Main Interface
+
+<MainMenu@BoxLayout>:
+    orientation: "vertical"
+    Button:
+        text: "layout"
+        on_press: app.manager.push("PageLayoutExample")
+    Button:
+        text: "Widgets"
+        on_press: app.manager.push("WidgetsExample")
+    Button:
+        text: "Images"
+        on_press: app.manager.push("ImagesExample")
+
+<MyScreenManager>:
+    # Screen:
+    #     name: "screen1"
+    #     Button:
+    #         text: "Button1"
+    #         on_press: root.transition.direction = "left"; root.current = "screen2"
+    # Screen:
+    #     name: "screen2"
+    #     Button:
+    #         text: "Button2"
+    #         # Notice that root.previous will only take you to the previous screen defined in the kv, will need a stack for true prev
+    #         on_press: root.transition.direction = "right"; root.current = root.previous() # can also put "screen1"
+    Screen:
+        name: "Main Menu"
+        MainMenu:
+    
+    # Screen:
+    #     name: "screen1"
+    #     BoxLayout:
+    #         Button:
+    #             text: "go to ImageExample"
+    #             on_press: app.manager.push("ImagesExample")
+    #         Button:
+    #             text: "go to screen 3"
+    #             on_press: app.manager.push("screen3")
+    Screen:
+        name: "PageLayoutExample"
+        BoxLayoutWithActionBar:
+            title: "PageLayoutExample"
+            LayoutExamplesTabs:
+
+    Screen:
+        name: "WidgetsExample"
+        BoxLayoutWithActionBar:
+            title: "WidgetsExample"
+            WidgetsExample:
+
+    Screen:
+        name: "ImagesExample"
+        BoxLayoutWithActionBar:
+            title: "Images"
+            ImagesExample:
+
+    # Screen:
+    #     name: "screen2"
+    #     Button:
+    #         text: "Button2"
+    #         on_press: app.manager.pop()
+    # Screen:
+    #     name: "screen3"
+    #     Button:
+    #         text: "Button3"
+    #         on_press: app.manager.pop()
+            
+
+

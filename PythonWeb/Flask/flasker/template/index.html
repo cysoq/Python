@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content%}
+
+<h1>Hello World!</h1>
+
+<p>This is my first webpage!!!</p>
+
+<p>My name is {{ first_name }}</p>
+
+<p>{{stuff| striptags}}</p>
+<!-- Pass in variable -->
+
+<h3>Favorite Pizza:</h3>
+<!-- {} with the %% is used for logic -->
+{% for topping in favorite_pizza %}
+    {% if topping == 41 %}
+        {{topping + 100}}<br/>
+    {% else%}
+        {{ topping }}<br/>
+    {% endif %}
+
+{% endfor %}
+
+<br/><br/>
+<!-- How to index a list -->
+{{ favorite_pizza.0}}
+<!-- do math! -->
+{{ favorite_pizza.3 + 10}}
+
+{% endblock%}

@@ -1,0 +1,172 @@
+<LayoutExamplesTabs@TabbedPanel>:
+    do_default_tab: False
+    TabbedPanelItem:
+        text: "Widget"
+        mainWidget:
+    TabbedPanelItem:
+        text: "Box"
+        BoxLayoutExample:
+    TabbedPanelItem:
+        text: "Anchor"
+        AnchorLayoutExample:
+    TabbedPanelItem:
+        text: "Grid"
+        GridLayoutExample:
+    TabbedPanelItem:
+        text: "Stack"
+        StackLayoutExample:
+    TabbedPanelItem:
+        text: "Scroll"
+        ScrollViewExample:
+    TabbedPanelItem:
+        text: "Page"
+        PageLayoutExample:
+
+
+<PageLayoutExample@PageLayout>:
+    # right now the back canvas is not black, but transparent, so the other slides will be visible in the backgorund
+    mainWidget:
+    BoxLayoutExample:
+        canvas.before:
+            Color:
+                rgb: 0, 0, 0
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    AnchorLayoutExample:
+        canvas.before:
+            Color:
+                rgb: 0, 0, 0
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    GridLayoutExample:
+        canvas.before:
+            Color:
+                rgb: 0, 0, 0
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    StackLayoutExample:
+        canvas.before:
+            Color:
+                rgb: 0, 0, 0
+            Rectangle:
+                size: self.size
+                pos: self.pos
+    ScrollViewExample:
+        canvas.before:
+            Color:
+                rgb: 0, 0, 0
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+
+<ScrollViewExample@ScrollView>:
+    StackLayoutExample:
+        size_hint: 1, None
+        height: self.minimum_height # gets actual height
+
+<StackLayoutExample>: #Can stack elements on multiple lines
+    # left-right top-bottom
+    # orientation: "rl-tb"
+    #padding:("20dp", "20dp", "20dp", "20dp")
+    # spacing: "20dp", "20dp"
+    # Button:
+    #     text: "A"
+    #     size_hint: .2, .2s
+    # Button:
+    #     text: "B"
+    #     size_hint: .2, .2
+    # Button:
+    #     text: "C"
+    #     size_hint: .2, .2
+    # Button:
+    #     text: "D"
+    #     size_hint: .2, .2
+    # Button:
+    #     text: "E"
+    #     size_hint: .2, .2
+    # Button:
+    #     text: "F"
+    #     size_hint: .2, .2
+
+
+    
+
+<GridLayoutExample@GridLayout>:
+    # Must specify row/cols
+    cols: 3
+    Button:
+        text: "A"
+        size_hint: None, 1 # Needs to be on both A and C to work (same col)
+        width: "60dp"
+    AnchorLayoutExample:
+
+    Button:
+        text: "C"
+    Button:
+        text: "D"
+        size_hint: None, 1
+        width: "60dp"
+    Button:
+        text: "E"
+    Button:
+        text: "F"
+
+<AnchorLayoutExample>:
+    # righ, left, center
+    anchor_x: "center"
+    #bottom, top, center
+    anchor_y: "top"
+    BoxLayout:
+        size_hint: .2, .2
+        Button:
+            text: "A"
+        Button:
+            text: "B"
+
+
+<BoxLayoutExample>:
+    orientation: "horizontal"
+    Button:
+        text: "A"
+        size: "40dp", "40dp" #This will not work, without size_hint: None, None
+        size_hint: None, None # Will use a percentage
+        # Can also mix and match by specifying and width: and a height to make some things constant or not
+
+        # Now see how to posistion them
+        pos_hint: {"center_x": .5}
+        # x, center_x, right (For Horizontal)
+        # y, center_y, top (For Vertical)
+
+    BoxLayout:
+        orientation: "vertical"
+        spacing: "10dp" # Gives the buttons spacing
+        Button:
+            text: "B1"
+        Button:
+            text: "B2"
+        Button:
+            text: "B3"
+        Button:
+            text: "B4"
+    
+    Button:
+        text: "C"
+        # size_hint: 1, 2 # Will use a percentage
+
+<mainWidget>:
+    Button:
+        text: "Hello"
+        size: "100dp", "80dp" #size in pixels will vary from screen to screen, will use dp for that reason
+        # For example, a 40dp by 40dp is the size of a finger touch
+        pos: "100dp", "200dp" # WIDTH, HEIGHT
+        color: 0, 0, 1, 1 # Red, green, blue, alpha=transparency
+    Label:
+        text: "Hello2"
+        size: "100dp", "80dp" #size in pixels will vary from screen to screen, will use dp for that reason
+        # For example, a 40dp by 40dp is the size of a finger touch
+        pos: "200dp", "300dp" 
+        color: 1, 0, 0, 1
